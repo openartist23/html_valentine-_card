@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine Card ❤️</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #ffe6f0;
+    text-align: center;
+    padding-top: 100px;
+    overflow: hidden;
+}
+
+h1 {
+    color: #d63384;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+    transition: 0.3s;
+}
+
+#noBtn {
+    background-color: #999;
+    color: white;
+}
+
+#message {
+    margin-top: 30px;
+    font-size: 24px;
+    color: #c9184a;
+    display: none;
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Nedious, Will you be my Valentine? ❤️</h1>
+
+<button id="yesBtn">Yes</button>
+<button id="noBtn">No</button>
+
+<div id="message">
+I love you Nedi and promise to buy you snacks and flowers 💖🍫
+</div>
+
+<script>
+let yesBtn = document.getElementById("yesBtn");
+let noBtn = document.getElementById("noBtn");
+let message = document.getElementById("message");
+
+let size = 18;
+let noClicks = 0;
+
+yesBtn.onclick = () => {
+    message.style.display = "block";
+    launchConfetti();
+};
+
+noBtn.onclick = () => {
+    noClicks++;
+    size += 10;
+    yesBtn.style.fontSize = size + "px";
+
+    if (noClicks >= 3) {
+        noBtn.textContent = "Click yes already 😤";
+    }
+};
+
+function launchConfetti() {
+    for (let i = 0; i < 120; i++) {
+        let confetti = document.createElement("div");
+        confetti.className = "confetti";
+
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor =
+            ["#ff4d6d", "#ffbe0b", "#8338ec", "#3a86ff", "#ff006e"]
+            [Math.floor(Math.random() * 5)];
+
+        confetti.style.animationDuration =
+            (Math.random() * 2 + 2) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 3000);
+    }
+}
+</script>
+
+</body>
+</html>
